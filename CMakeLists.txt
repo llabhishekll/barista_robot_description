@@ -12,7 +12,7 @@ find_package(xacro REQUIRED)
 find_package(gazebo_ros REQUIRED)
 
 # install
-install(DIRECTORY launch meshes rviz urdf worlds DESTINATION share/${PROJECT_NAME}/)
+install(DIRECTORY launch meshes rviz urdf worlds xacro DESTINATION share/${PROJECT_NAME}/)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

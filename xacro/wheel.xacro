@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="wheel" params="name length radius mass">
+        <link name="${name}">
+            <visual>
+                <origin xyz="0 0 0" rpy="1.5707 0 0" />
+                <geometry>
+                    <!-- units in meters -->
+                    <cylinder length="${length}" radius="${radius}" />
+                </geometry>
+                <material name="red">
+                    <color rgba="1 0 0 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="1.5707 0 0" />
+                <geometry>
+                    <!-- units in meters -->
+                    <cylinder length="${length}" radius="${radius}" />
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <!-- units in kilograms -->
+                <mass value="${mass}" />
+                <!-- inertial tensors for solid cylinder -->
+                <inertia
+                    ixx="${mass*(3*radius*radius+length*length)/12}" ixy="0.0" ixz="0.0"
+                    iyy="${mass*(3*radius*radius+length*length)/12}" iyz="0.0"
+                    izz="${mass*(radius*radius)/2}"
+                />
+            </inertial>
+        </link>
+    </xacro:macro>
+
+    <xacro:macro name="caster" params="name radius mass">
+        <link name="${name}">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <!-- units in meters -->
+                    <sphere radius="${radius}" />
+                </geometry>
+                <material name="white">
+                    <color rgba="1 1 1 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <!-- units in meters -->
+                    <sphere radius="${radius}" />
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <!-- units in kilograms -->
+                <mass value="${mass}" />
+                <!-- inertial tensors for solid sphere -->
+                <inertia
+                    ixx="${2*mass*radius*radius/5}" ixy="0.0" ixz="0.0"
+                    iyy="${2*mass*radius*radius/5}" iyz="0.0"
+                    izz="${2*mass*radius*radius/5}"
+                />
+            </inertial>
+        </link>
+    </xacro:macro>
+
+</robot>
