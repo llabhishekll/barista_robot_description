@@ -9,6 +9,7 @@
     <xacro:arg name="namespace" default="" />
     <xacro:arg name="include_laser" default="true" />
     <xacro:arg name="include_joint_state" default="true" />
+    <xacro:arg name="inverse" default="false" />
 
     <!-- XACRO FILES -->
     <xacro:include filename="wheel.xacro" />
@@ -172,22 +173,29 @@
     <!-- GAZEBO -->
 
     <!-- properties for base_link -->
-    <gazebo reference="base_link">
-        <material>Gazebo/Blue </material>
-    </gazebo>
+    <xacro:if value="$(arg inverse)">
+        <gazebo reference="base_link">
+            <material>Gazebo/Red </material>
+        </gazebo>
+    </xacro:if>
+    <xacro:unless value="$(arg inverse)">
+        <gazebo reference="base_link">
+            <material>Gazebo/Blue </material>
+        </gazebo>
+    </xacro:unless>
 
     <!-- properties for right_wheel -->
     <gazebo reference="right_wheel">
         <mu1>1</mu1>
         <mu2>1</mu2>
-        <material>Gazebo/Red </material>
+        <material>Gazebo/White </material>
     </gazebo>
 
     <!-- properties for left_wheel -->
     <gazebo reference="left_wheel">
         <mu1>1</mu1>
         <mu2>1</mu2>
-        <material>Gazebo/Red </material>
+        <material>Gazebo/White </material>
     </gazebo>
 
     <!-- properties for front_caster -->
@@ -227,9 +235,16 @@
     </gazebo>
 
     <!-- properties for cup_holder -->
-    <gazebo reference="cup_holder">
-        <material>Gazebo/Blue </material>
-    </gazebo>
+    <xacro:if value="$(arg inverse)">
+        <gazebo reference="cup_holder">
+            <material>Gazebo/Red </material>
+        </gazebo>
+    </xacro:if>
+    <xacro:unless value="$(arg inverse)">
+        <gazebo reference="cup_holder">
+            <material>Gazebo/Blue </material>
+        </gazebo>
+    </xacro:unless>
 
     <!-- properties for base_laser -->
     <xacro:if value="$(arg include_laser)">
@@ -242,7 +257,6 @@
     <gazebo>
         <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
             <!-- defined parameters -->
-            <robot_base_frame>base_footprint</robot_base_frame>
             <left_joint>joint_base_to_right_wheel</left_joint>
             <right_joint>joint_base_to_left_wheel</right_joint>
             <wheel_separation>0.30</wheel_separation>
@@ -252,7 +266,9 @@
             <max_wheel_acceleration>2.0</max_wheel_acceleration>
             <publish_odom>true</publish_odom>
             <publish_odom_tf>true</publish_odom_tf>
-            <odometry_frame>odom</odometry_frame>
+            <!-- launch parameters -->
+            <robot_base_frame>$(arg namespace)/base_footprint</robot_base_frame>
+            <odometry_frame>$(arg namespace)/odom</odometry_frame>
             <ros>
                 <namespace>$(arg namespace)</namespace>
                 <argument>/cmd_vel:=/cmd_vel</argument>
@@ -292,8 +308,10 @@
                 <plugin name="laser" filename="libgazebo_ros_ray_sensor.so">
                     <!-- defined parameters -->
                     <ros>
-                        <remapping>~/out:=$(arg namespace)/scan</remapping>
+                        <namespace>$(arg namespace)</namespace>
+                        <remapping>~/out:=scan</remapping>
                     </ros>
+                    <frame_name>$(arg namespace)/base_laser</frame_name>
                     <!-- default parameters -->
                     <output_type>sensor_msgs/LaserScan</output_type>
                 </plugin>
