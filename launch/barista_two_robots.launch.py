@@ -80,7 +80,7 @@ def generate_launch_description():
                             [
                                 " xacro ", path_urdf.as_posix(),
                                 " namespace:=", namespace2,
-                                " include_laser:=", "false",
+                                " include_laser:=", "true",
                                 " inverse:=", "true",
                             ]
                         ),
