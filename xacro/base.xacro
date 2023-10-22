@@ -2,7 +2,7 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="cup_holder_tray" params="name length radius mass">
+    <xacro:macro name="base" params="name length radius mass">
         <link name="${name}">
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />

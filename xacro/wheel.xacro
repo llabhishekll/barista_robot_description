@@ -10,8 +10,8 @@
                     <!-- units in meters -->
                     <cylinder length="${length}" radius="${radius}" />
                 </geometry>
-                <material name="red">
-                    <color rgba="1 0 0 1" />
+                <material name="white">
+                    <color rgba="1 1 1 0.5" />
                 </material>
             </visual>
             <collision>
@@ -44,7 +44,7 @@
                     <sphere radius="${radius}" />
                 </geometry>
                 <material name="white">
-                    <color rgba="1 1 1 1" />
+                    <color rgba="1 1 1 0.5" />
                 </material>
             </visual>
             <collision>

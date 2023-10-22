@@ -12,6 +12,7 @@
     <xacro:arg name="inverse" default="false" />
 
     <!-- XACRO FILES -->
+    <xacro:include filename="base.xacro" />
     <xacro:include filename="wheel.xacro" />
     <xacro:include filename="standoff.xacro" />
     <xacro:include filename="cup_holder_tray.xacro" />
@@ -24,36 +25,7 @@
     </link>
 
     <!-- base -->
-    <link name="base_link">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <!-- units in meters -->
-                <cylinder length="0.155" radius="0.178" />
-            </geometry>
-            <material name="blue">
-                <color rgba="0 0 1 0.5" />
-            </material>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <!-- units in meters -->
-                <cylinder length="0.155" radius="0.178" />
-            </geometry>
-        </collision>
-        <inertial>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <!-- units in kilograms -->
-            <mass value="10" />
-            <!-- inertial tensors for solid cylinder -->
-            <inertia
-                ixx="0.09923" ixy="0.0" ixz="0.0"
-                iyy="0.09923" iyz="0.0"
-                izz="0.15842"
-            />
-        </inertial>
-    </link>
+    <xacro:base name="base_link" length="0.155" radius="0.178" mass="10" />
 
     <!-- right wheel -->
     <xacro:wheel name="right_wheel" length="0.0206" radius="0.0352" mass="1" />
