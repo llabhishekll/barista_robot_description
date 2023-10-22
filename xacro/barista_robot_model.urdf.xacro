@@ -40,19 +40,19 @@
     <xacro:caster name="back_caster" radius="0.0352" mass="1" />
 
     <!-- front right standoff -->
-    <xacro:standoff name="fr_standoff" length="0.220" radius="0.010" mass="1" />
+    <xacro:standoff name="fr_standoff" length="0.220" radius="0.010" mass="0.5" />
 
     <!-- front left standoff -->
-    <xacro:standoff name="fl_standoff" length="0.220" radius="0.010" mass="1" />
+    <xacro:standoff name="fl_standoff" length="0.220" radius="0.010" mass="0.5" />
 
     <!-- back right standoff -->
-    <xacro:standoff name="br_standoff" length="0.220" radius="0.010" mass="1" />
+    <xacro:standoff name="br_standoff" length="0.220" radius="0.010" mass="0.5" />
 
     <!-- back left standoff -->
-    <xacro:standoff name="bl_standoff" length="0.220" radius="0.010" mass="1" />
+    <xacro:standoff name="bl_standoff" length="0.220" radius="0.010" mass="0.5" />
 
     <!-- cup holder -->
-    <xacro:cup_holder_tray name="cup_holder" length="0.090" radius="0.160" mass="7" />
+    <xacro:cup_holder_tray name="cup_holder" length="0.090" radius="0.160" mass="2" />
 
     <!-- base laser -->
     <xacro:if value="$(arg include_laser)">
