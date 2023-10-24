@@ -2,7 +2,7 @@
 
 Target is to create a working robot using the URDF, defining all the required links & joints, adding required actuators and sensors, also create launch files to spawn robot in gazebo environment (world), then re-factor it using `XACRO` macros.
 
-![ros](https://img.shields.io/badge/ROS2-humble-red) ![cpp](https://img.shields.io/badge/cpp-11+-blue) ![python](https://img.shields.io/badge/python-3.10+-blue)
+![ros](https://img.shields.io/badge/ROS2-humble-red) ![cpp](https://img.shields.io/badge/cpp-11+-blue) ![python](https://img.shields.io/badge/python-3.8+-blue)
 
 ## Structure
 
@@ -156,8 +156,8 @@ $ ros2 topic echo /odom
 
 The actuators and sensors to the robot in order for it to control the motors of the robot and perceive its surroundings.
 
-- `libgazebo_ros_diff_drive.so` from `differential_drive_controller` linked to joints.
-- `libgazebo_ros_ray_sensor.so` from `gazebo_ros_head_hokuyo_controller` attached to `base_laser` publish on `/scan`.
+- `libgazebo_ros_diff_drive.so` linked to wheel joints.
+- `libgazebo_ros_ray_sensor.so` attached to `base_laser` publish on `/scan`.
 - `libgazebo_ros_joint_state_publisher.so` for joint state `TFs` publishing.
 
 ## Roadmap
